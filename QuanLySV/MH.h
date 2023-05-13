@@ -1,4 +1,4 @@
-﻿
+
 #pragma once
 #include"Const.h"
 #include"Input.h"
@@ -57,6 +57,7 @@ public:
     void themNode(Node*& r, Subject& key, int& check);
     // xoa mon hoc
     Node* xoaNode(Node*& r, char* key);
+    bool checkTrung(Node*& tmp,string maMH);
     int soNode(Node* r);
     void vietDataMH(Node* r, ofstream& fileOut);
     void vietDataDSMH();
@@ -71,6 +72,7 @@ public:
     void xuat1Trang(Subject arrMH[], int batDau, int ketThuc, Table Bang);
     void xuatTrang(Subject*& arrMH, int tongSoDong, thaoTac& hD, char* s, int& t, int& on);
     void menuSetMH(int& on);
+
 };
 
 // class subject
@@ -163,6 +165,17 @@ void treeMH::DeleteNode(Node* r) {
     DeleteNode(r->getRight());
     delete r;
     r = NULL;
+}
+// check trung maMH
+bool treeMH::checkTrung(Node*& tmp,string maMH) {
+    if (tmp == NULL) return false;
+    if (strcmp(maMH.c_str(), tmp->getData().getMaMH()) < 0) {
+        return (checkTrung(tmp->getLeft(), maMH) == true) ? true : false;
+    }
+    else if (strcmp(maMH.c_str(), tmp->getData().getMaMH()) > 0) {
+        return (checkTrung(tmp->getLeft(), maMH) == true) ? true : false;
+    }
+    else return true;
 }
 // them mon hoc vao cay 
 void treeMH::themNode(Node*& r, Subject& key, int& check) {
