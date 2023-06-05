@@ -742,6 +742,7 @@ void DSLH::menuSetLop(int& on) {
 			cleardevice();
 			menuLop();
 			input[0]->draw();
+			buttonTimKiem();
 			vien(183, 559, 169, 205);
 			n = 0;
 			tongSoDong = soLuongLSV(getHeadLH());
@@ -762,7 +763,7 @@ void DSLH::menuSetLop(int& on) {
 			cleardevice(); 
 			menuLop();
 			input[0]->draw();
-
+			buttonTimKiem();
 			ds.freeDSLH(ds.getHeadLH());
 			for (NodeLop* p = this->headLH; p != NULL; p = p->getNextLH()) {
 				ds.themLH(p->getDataLop());
