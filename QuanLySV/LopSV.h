@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"Const.h"
 #include"SV.h"
 
@@ -43,7 +43,7 @@ public:
 	int viTriThem(char* maLop);
 	void themLH(Lop lop);
 	int xoaLH(string ma);
-	int soLuongLSV();
+	int soLuongLSV(NodeLop* tmp);
 	void locMaLH(string key, DSLH& ds, int& n);
 	void timLSV(string maLop, NodeLop*& tmp);
 	void vietDSSV();
@@ -201,9 +201,8 @@ int DSLH::xoaLH(string ma) {
 	}
 
 }
-int DSLH::soLuongLSV() {
+int DSLH::soLuongLSV(NodeLop* tmp) {
 	int soLuong = 0;
-	NodeLop* tmp = headLH;
 	while (tmp != NULL) {
 		++soLuong;
 		tmp = tmp->getNextLH();
@@ -215,20 +214,21 @@ void DSLH::locMaLH(string key, DSLH& ds, int& n) {
 	ds.setHeadLH(NULL);
 	NodeLop* tmp = this->headLH;//lấy head từ ds hiện tại 
 	n = 0;
-	if (!key.empty()) {
+	if (key == " ") {
+		while (tmp != NULL) {
+			NodeLop* LH = new NodeLop(tmp->getDataLop());
+			ds.themLH(LH->getDataLop());
+			n++;
+			tmp = tmp->getNextLH();
+		}
+	}
+	else {
 		while (tmp != NULL) {
 			if (string(tmp->getDataLop().getMaLop()).find(key) != string::npos) {
 				NodeLop* LH = new NodeLop(tmp->getDataLop());
 				ds.themLH(LH->getDataLop());
 				n++;
 			}
-			tmp = tmp->getNextLH();
-		}
-	}
-	else {
-		while (tmp != NULL) {
-			NodeLop* LH = new NodeLop(tmp->getDataLop());
-			ds.themLH(LH->getDataLop());
 			tmp = tmp->getNextLH();
 		}
 	}
@@ -476,6 +476,7 @@ void DSLH::xuatTrangDSLH(DSLH ds, int tongSoDong, thaoTac& hD, int& t, char* s, 
 				ketThuc = batDau + maxDong;
 				trangHienTai--;
 				xuat1TrangDSL(ds.getHeadLH(), batDau, ketThuc, newTable);
+				str = to_string(trangHienTai) + " / " + to_string(tongSoTrang);
 				settextstyle(10, 0, 1);
 				setbkcolor(BlueNhat); setcolor(Den);
 				outtextxy((685 + 777) / 2 - textwidth(convertStringToChar(str)) / 2, (703 + 734) / 2 - textheight(convertStringToChar(str)) / 2, convertStringToChar(str));
@@ -590,19 +591,28 @@ void DSLH::nhapLocLH(char* s, thaoTac& hD, int& thaoTacRoi) {
 			getmouseclick(WM_LBUTTONDOWN, x, y);
 			clearmouseclick(WM_LBUTTONDOWN);
 			if (21 <= x && x <= 193 && 21 <= y && y <= 71) {
+				s[tmp] = '\0';
 				thaoTacRoi = 1;
 				hD = BACK;
 				break;
 
 			}
 			else if (1390 <= x && x <= 1490 && 169 <= y && y <= 214) {
+				s[tmp] = '\0';
 				hD = THEM;
 				thaoTacRoi = 1;
 				break;
 			}
 			else if (563 <= x && x <= 630 && 169 <= y && y <= 205) {
+				s[tmp] = '\0';
 				thaoTacRoi = 1;
 				hD = LOC;
+				break;
+			}
+			else {
+				s[tmp] = '\0';
+				if (hD == LOC) break;
+				hD = XUAT;
 				break;
 			}
 		}
@@ -678,20 +688,22 @@ void DSLH::menuSetLop(int& on) {
 	menuLop();
 	int x = -1; int y = -1;
 	int n = 0;
-	char s[] = { "" };
+	char s[100];
+	s[0] = ' ';
+	s[1] = '\0';
 	Input* input[1];
-	input[0] = new Input(string(s), 1, "TIM KIEM", 50, 0, 183, 559, 169, 205, graynhat, 0, 3);
+	input[0] = new Input("", 1, "TIM KIEM", 50, 0, 183, 559, 169, 205, graynhat, 0, 3);
 	input[0]->draw();
+	vien(183, 559, 169, 205);
 	DSLH ds;
 	xuatDSLH();
 	xuatDSSV();
-	int tongSoDong = soLuongLSV();
+	int tongSoDong = soLuongLSV(getHeadLH());
 	ds.xuatDSLH();
 	ds.xuatDSSV();
 	thaoTac hD = XUAT;
 	bool ok = true;
 	int thaoTacRoi = 0;
-	xuatTrangDSLH(ds, tongSoDong, hD, thaoTacRoi, s, on);
 	while (ok) {
 		//delay(200);
 
@@ -730,21 +742,24 @@ void DSLH::menuSetLop(int& on) {
 			cleardevice();
 			menuLop();
 			input[0]->draw();
-
-			tongSoDong = soLuongLSV();
+			vien(183, 559, 169, 205);
+			n = 0;
+			tongSoDong = soLuongLSV(getHeadLH());
+			outtextxy(183 + 5, (169 + 205 - textheight(s)) / 2, s);
 			xuatTrangDSLH(ds, tongSoDong, hD, thaoTacRoi, s, on);
-			thaoTacRoi = 0;
 			break;
 		}
 		case LOC: {
 			locMaLH(string(s), ds, n);
-			xuatTrangDSLH(ds, tongSoDong, hD, thaoTacRoi, s, on);
+			outtextxy(183 + 5, (169 + 205 - textheight(s)) / 2, s);
+			xuatTrangDSLH(ds, n, hD, thaoTacRoi, s, on);
 			break;
 
 		}
 		case THEM: {
 			menuThemLop();
 			nhapLH();
+			cleardevice(); 
 			menuLop();
 			input[0]->draw();
 
@@ -752,9 +767,10 @@ void DSLH::menuSetLop(int& on) {
 			for (NodeLop* p = this->headLH; p != NULL; p = p->getNextLH()) {
 				ds.themLH(p->getDataLop());
 			}
-			int tongSoDong = soLuongLSV();
+			int tongSoDong = soLuongLSV(getHeadLH());
 			xuatTrangDSLH(ds, tongSoDong, hD, thaoTacRoi, s, on);
 			thaoTacRoi = 0;
+			hD = XUAT;
 			break;
 		}
 		case BACK: {
@@ -763,8 +779,8 @@ void DSLH::menuSetLop(int& on) {
 				dssv.themSV(p->getDataSV(), 0);
 			}*/
 			ok = false;
-			/*ds.freeDSLH(ds.getHeadLH());
-			freeDSLH(getHeadLH());*/
+			ds.freeDSLH(ds.getHeadLH());
+			freeDSLH(getHeadLH());
 			return;
 			break;
 		}
