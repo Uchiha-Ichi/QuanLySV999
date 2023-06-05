@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #pragma once
 #include "graphics.h" // lib graphics
 //#include "conio.h"
@@ -108,6 +108,8 @@ char _locM[] = { "LOC" };
 char _sangTrai[] = { ">" };
 char _sangPhai[] = { "<" };
 char _loc[] = { "LOC" };
+char _thoat[] = { "X" };
+char _themSinhVien[] = { "THEM SINH VIEN" };
 
 //-------------------------Enum --------------------
 enum thaoTac { THEM, LOC, BACK, XUAT, SUA };
