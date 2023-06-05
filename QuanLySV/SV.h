@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"Const.h"
 #include"Convert.h"
 #include"Input.h"
@@ -521,6 +521,7 @@ void DSSV::xuatTrangDSSV(DSSV dssv, int tongSoSV, thaoTac& hD, int& t, char* s, 
 				for (int i = 0; i < ((y - 310) / kcY + (trangHienTai - 1) * maxDong); i++) {
 					temp = temp->getNextSV();
 				}
+
 				nhapSV(string(temp->getDataSV().getMaSV()), string(temp->getDataSV().getHo()), string(temp->getDataSV().getTen()), string(temp->getDataSV().getSex()), string(temp->getDataSV().getSdt()), string(temp->getDataSV().getNamNhap()), 2);
 				cleardevice();
 				break;
@@ -531,12 +532,12 @@ void DSSV::xuatTrangDSSV(DSSV dssv, int tongSoSV, thaoTac& hD, int& t, char* s, 
 }
 void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str5, string str6, int check) {
 	Input* input[6];
-	input[0] = new Input(str1, 2, "Ma Sinh Vien", 50, 0, 500, 900, 200, 225, DARKGRAY, 0, 3);
-	input[1] = new Input(str2, 1, "Ho", 50, 0, 500, 900, 230, 255, DARKGRAY, 0, 3);
-	input[2] = new Input(str3, 1, "Ten", 50, 0, 500, 900, 260, 285, DARKGRAY, 0, 3);
-	input[3] = new Input(str4, 1, "Gioi Tinh", 50, 0, 500, 900, 290, 315, DARKGRAY, 0, 3);
-	input[4] = new Input(str5, 3, "So Dien Thoai", 50, 0, 500, 900, 320, 345, DARKGRAY, 0, 3);
-	input[5] = new Input(str6, 3, "Nam Nhap Hoc", 50, 0, 500, 900, 350, 375, DARKGRAY, 0, 3);
+	input[0] = new Input(str1, 2, "Ma Sinh Vien", 50, 0, 650, 1050, 250, 290, DARKGRAY, 0, 3);
+	input[1] = new Input(str2, 1, "Ho", 50, 0, 650, 1050, 320, 360, DARKGRAY, 0, 3);
+	input[2] = new Input(str3, 1, "Ten", 50, 0, 650, 1050, 390, 430, DARKGRAY, 0, 3);
+	input[3] = new Input(str4, 1, "Gioi Tinh", 50, 0, 650, 1050, 460, 500, DARKGRAY, 0, 3);
+	input[4] = new Input(str5, 3, "So Dien Thoai", 50, 0, 650, 1050, 530, 570, DARKGRAY, 0, 3);
+	input[5] = new Input(str6, 3, "Nam Nhap Hoc", 50, 0, 650, 1050, 600, 640, DARKGRAY, 0, 3);
 	input[0]->draw();
 	input[1]->draw();
 	input[2]->draw();
@@ -550,7 +551,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 		if (ismouseclick(WM_LBUTTONDOWN)) {
 			getmouseclick(WM_LBUTTONDOWN, x, y);
 			clearmouseclick(WM_LBUTTONDOWN);
-			if (500 <= x && x <= 900 && 200 <= y && y <= 225 && check != 2) {
+			if (650 <= x && x <= 1050 && 250 <= y && y <= 290 && check != 2) {
 				input[0]->setCheck(true);
 				input[1]->setCheck(false);
 				input[2]->setCheck(false);
@@ -564,7 +565,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				input[4]->draw();
 				input[5]->draw();
 			}
-			else if (500 <= x && x <= 900 && 230 <= y && y <= 255) {
+			else if (650 <= x && x <= 1050 && 320 <= y && y <= 360) {
 				input[0]->setCheck(false);
 				input[1]->setCheck(true);
 				input[2]->setCheck(false);
@@ -578,7 +579,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				input[4]->draw();
 				input[5]->draw();
 			}
-			else if (500 <= x && x <= 900 && 260 <= y && y <= 285) {
+			else if (650 <= x && x <= 1050 && 390 <= y && y <= 430) {
 				input[0]->setCheck(false);
 				input[1]->setCheck(false);
 				input[2]->setCheck(true);
@@ -592,7 +593,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				input[4]->draw();
 				input[5]->draw();
 			}
-			else if (500 <= x && x <= 900 && 290 <= y && y <= 315) {
+			else if (650 <= x && x <= 1050 && 460 <= y && y <= 500) {
 				input[0]->setCheck(false);
 				input[1]->setCheck(false);
 				input[2]->setCheck(false);
@@ -606,7 +607,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				input[4]->draw();
 				input[5]->draw();
 			}
-			else if (500 <= x && x <= 900 && 320 <= y && y <= 345) {
+			else if (650 <= x && x <= 1050 && 530 <= y && y <= 570) {
 				input[0]->setCheck(false);
 				input[1]->setCheck(false);
 				input[2]->setCheck(false);
@@ -620,7 +621,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				input[4]->addChar();
 				input[5]->draw();
 			}
-			else if (500 <= x && x <= 900 && 350 <= y && y <= 375) {
+			else if (650 <= x && x <= 1050 && 600 <= y && y <= 640) {
 				input[0]->setCheck(false);
 				input[1]->setCheck(false);
 				input[2]->setCheck(false);
@@ -635,7 +636,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				input[5]->addChar();
 			}
 
-			else if (400 <= x && x <= 660 && 540 <= y && y <= 570) {
+			else if (755 <= x && x <= 835 && 695 <= y && y <= 734) {
 				if (check == 0) {
 					if (input[0]->checkRong() == true && input[1]->checkRong() == true && input[2]->checkRong() == true && input[3]->checkRong() == true && input[4]->checkRong() == true && input[5]->checkRong() == true) {
 						int tmp = MessageBox(
@@ -656,7 +657,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 							if (check == -1) {
 								MessageBox(
 									NULL,
-									(LPCWSTR)convertCharArrayToLPCWSTR("MA Sinh Vien DA BI TRUNG "),
+									(LPCWSTR)convertCharArrayToLPCWSTR("MA SINH VIEN DA BI TRUNG "),
 									(LPCWSTR)convertCharArrayToLPCWSTR("THONG BAO"),
 									MB_ICONERROR | MB_OK | MB_DEFAULT_DESKTOP_ONLY
 								);
@@ -681,13 +682,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 				}
 				else if (check == 2) {
 					if (input[0]->checkRong() == true && input[1]->checkRong() == true && input[2]->checkRong() == true && input[3]->checkRong() == true && input[4]->checkRong() == true && input[5]->checkRong() == true) {
-						int tmp = MessageBox(
-							NULL,
-							(LPCWSTR)convertCharArrayToLPCWSTR("BAN CO MUON LUU SINH VIEN"),
-							(LPCWSTR)convertCharArrayToLPCWSTR("THONG BAO"),
-							MB_ICONQUESTION | MB_YESNO | MB_DEFAULT_DESKTOP_ONLY
-						);
-						if (tmp == IDYES) {
+
 							int tmp = MessageBox(
 								NULL,
 								(LPCWSTR)convertCharArrayToLPCWSTR("BAN CO MUON LUU CHINH SUA "),
@@ -705,7 +700,7 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 								themSV(SV, check);
 								break;
 							}
-						}
+						
 					}
 				}
 			}
@@ -715,6 +710,9 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 
 void DSSV::nhapLocSV(char* s, thaoTac& hD, int& t) {
 	int x = -1, y = -1;
+	setbkcolor(graynhat);
+	settextstyle(10, 0, 1);
+	setcolor(Den);
 	int tmp = strlen(s);
 	if (tmp > 0 && s[0] == ' ') {
 		tmp = 0;
@@ -725,24 +723,33 @@ void DSSV::nhapLocSV(char* s, thaoTac& hD, int& t) {
 	while (kbhit()) c = getch();
 	while (1) {
 		delay(10);
-		outtextxy(920 + 5, (155 + 185 - textheight(s)) / 2, s);
+		outtextxy(183 + 5, (169 + 205 - textheight(s)) / 2, s);
 		if (ismouseclick(WM_LBUTTONDOWN)) {
 			getmouseclick(WM_LBUTTONDOWN, x, y);
 			clearmouseclick(WM_LBUTTONDOWN);
 			if (21 <= x && x <= 193 && 21 <= y && y <= 71) {
+				s[tmp] = '\0';
 				t = 1;
 				hD = BACK;
 				break;
 
 			}
 			else if (1390 <= x && x <= 1490 && 169 <= y && y <= 214) {
+				s[tmp] = '\0';
 				hD = THEM;
 				t = 1;
 				break;
 			}
 			else if (563 <= x && x <= 630 && 169 <= y && y <= 205) {
+				s[tmp] = '\0';
 				t = 1;
 				hD = LOC;
+				break;
+			}
+			else {
+				s[tmp] = '\0';
+				if (hD == LOC) break;
+				hD = XUAT;
 				break;
 			}
 		}
@@ -803,12 +810,14 @@ void DSSV::menuSetSV(int& on) {
 	int colorNen = BACKGROUND_COLOR;
 	int colorText = 0;
 	int x = -1; int y = -1;
-	char s[] = { "" };
+	char s[100];
+	s[0] = ' ';
+	s[1] = '\0';
 	int n = 0;
 	int check = 0;
 
 	Input* input[1];
-	input[0] = new Input(string(s), 1, "TIM KIEM", 50, 0, 183, 559, 169, 205, graynhat, 0, 3);
+	input[0] = new Input("", 1, "TIM KIEM", 50, 0, 183, 559, 169, 205, graynhat, 0, 3);
 	input[0]->draw();
 	DSSV dssv;
 	for (NodeSV* p = this->headSV; p != NULL; p = p->getNextSV()) {
@@ -819,7 +828,7 @@ void DSSV::menuSetSV(int& on) {
 	thaoTac hD = XUAT;
 	bool ok = true;
 	int thaoTacRoi = 0;
-	xuatTrangDSSV(dssv, tongSoSV, hD, thaoTacRoi, s, on);
+	//xuatTrangDSSV(dssv, tongSoSV, hD, thaoTacRoi, s, on);
 	while (ok) {
 		if (thaoTacRoi == 0) {
 			if (ismouseclick(WM_LBUTTONDOWN)) {
@@ -861,6 +870,7 @@ void DSSV::menuSetSV(int& on) {
 				dssv.themSV(p->getDataSV(), check);
 			}
 			tongSoSV = soLuongSV();
+			outtextxy(183 + 5, (169 + 205 - textheight(s)) / 2, s);
 			xuatTrangDSSV(dssv, tongSoSV, hD, thaoTacRoi, s, on);
 			thaoTacRoi = 0;
 			break;
@@ -868,7 +878,8 @@ void DSSV::menuSetSV(int& on) {
 		case LOC: {
 
 			locSV(string(s), dssv, n);
-			xuatTrangDSSV(dssv, tongSoSV, hD, thaoTacRoi, s, on);
+			outtextxy(183 + 5, (169 + 205 - textheight(s)) / 2, s);
+			xuatTrangDSSV(dssv, n, hD, thaoTacRoi, s, on);
 			break;
 
 		}
@@ -882,8 +893,10 @@ void DSSV::menuSetSV(int& on) {
 				dssv.themSV(p->getDataSV(), check);
 			}
 			tongSoSV = soLuongSV();
+			outtextxy(183 + 5, (169 + 205 - textheight(s)) / 2, s);
 			xuatTrangDSSV(dssv, tongSoSV, hD, thaoTacRoi, s, on);
 			thaoTacRoi = 0;
+			hD = XUAT;
 			break;
 		}
 		case BACK: {
