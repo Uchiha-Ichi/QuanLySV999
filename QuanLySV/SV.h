@@ -521,7 +521,7 @@ void DSSV::xuatTrangDSSV(DSSV dssv, int tongSoSV, thaoTac& hD, int& t, char* s, 
 				for (int i = 0; i < ((y - 310) / kcY + (trangHienTai - 1) * maxDong); i++) {
 					temp = temp->getNextSV();
 				}
-
+				menuSuaSV();
 				nhapSV(string(temp->getDataSV().getMaSV()), string(temp->getDataSV().getHo()), string(temp->getDataSV().getTen()), string(temp->getDataSV().getSex()), string(temp->getDataSV().getSdt()), string(temp->getDataSV().getNamNhap()), 2);
 				cleardevice();
 				break;
@@ -679,6 +679,15 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 							break;
 						}
 					}
+					else {
+						MessageBox(
+							NULL,
+							(LPCWSTR)convertCharArrayToLPCWSTR("VUI LONG NHAP DAY DAU THONG TIN "),
+							(LPCWSTR)convertCharArrayToLPCWSTR("THONG BAO"),
+							MB_ICONERROR | MB_OK | MB_DEFAULT_DESKTOP_ONLY
+						);
+						continue;
+					}
 				}
 				else if (check == 2) {
 					if (input[0]->checkRong() == true && input[1]->checkRong() == true && input[2]->checkRong() == true && input[3]->checkRong() == true && input[4]->checkRong() == true && input[5]->checkRong() == true) {
@@ -704,6 +713,18 @@ void DSSV::nhapSV(string str1, string str2, string str3, string str4, string str
 					}
 				}
 			}
+			else if (1100 <= x && x <= 1140 && 125 <= y && y <= 165) {
+				int tmp = MessageBox(
+					NULL,
+					(LPCWSTR)convertCharArrayToLPCWSTR("BAN MUON HUY SUA SINH VIEN"),
+					(LPCWSTR)convertCharArrayToLPCWSTR("THONG BAO"),
+					MB_ICONQUESTION | MB_YESNO | MB_DEFAULT_DESKTOP_ONLY
+				);
+				if (tmp == IDYES) {
+
+					break;
+				}
+				}
 		}
 	}
 }
@@ -865,6 +886,7 @@ void DSSV::menuSetSV(int& on) {
 			cleardevice();
 			menuSV();
 			input[0]->draw();
+			buttonTimKiem();
 			dssv.freeSV(dssv.getHeadSV());
 			for (NodeSV* p = this->headSV; p != NULL; p = p->getNextSV()) {
 				dssv.themSV(p->getDataSV(), check);
@@ -888,6 +910,7 @@ void DSSV::menuSetSV(int& on) {
 			nhapSV("", "", "", "", "", "", 0);
 			menuSV();
 			input[0]->draw();
+			buttonTimKiem();
 			dssv.freeSV(dssv.getHeadSV());
 			for (NodeSV* p = this->headSV; p != NULL; p = p->getNextSV()) {
 				dssv.themSV(p->getDataSV(), check);
