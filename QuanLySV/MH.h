@@ -901,6 +901,7 @@ void treeMH::menuSetMH(int& on) {
             cleardevice();
             menuMH();   
             input[0]->draw();
+            buttonTimKiem();
             vien(183, 559, 169, 205);
             n = 0;
             soLuong = 0;
@@ -915,6 +916,7 @@ void treeMH::menuSetMH(int& on) {
             cleardevice();
             menuMH();
             input[0]->draw();
+            buttonTimKiem();
             vien(183, 559, 169, 205);
             n = 0;
             soLuong = 0;
@@ -931,6 +933,7 @@ void treeMH::menuSetMH(int& on) {
             cleardevice();
             menuMH();
             input[0]->draw();
+            buttonTimKiem();
             vien(183, 559, 169, 205);
             n = 0;
             soLuong = 0;
