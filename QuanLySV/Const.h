@@ -110,6 +110,8 @@ char _sangPhai[] = { "<" };
 char _loc[] = { "LOC" };
 char _thoat[] = { "X" };
 char _themSinhVien[] = { "THEM SINH VIEN" };
+char _suaSinhVien[] = { "SUA SINH VIEN" };
+char _timkiem[] = { "TIM KIEM" };
 
 //-------------------------Enum --------------------
 enum thaoTac { THEM, LOC, BACK, XUAT, SUA };
