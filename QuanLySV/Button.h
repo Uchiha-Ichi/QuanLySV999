@@ -79,6 +79,16 @@ void tieuDe() {
     vien(0, 1540, 0, 94);
 }
 
+void buttonTimKiem() {
+    setbkcolor(graynhat);
+    setfillstyle(SOLID_FILL, graynhat);
+    bar(55, 169, 180, 205);
+    settextstyle(10, 0, 1);
+    setcolor(Den);
+    outtextxy((55 + 180) / 2 - textwidth(_timkiem) / 2, (169 + 205) / 2 - textheight(_timkiem) / 2, _timkiem);
+    vien(55, 180, 169, 205);
+
+}
 // ------------------------------MON HOC--------------------------------------
 void menuFirstSet();
 
@@ -155,7 +165,7 @@ void menuSuaMH() {
     setbkcolor(Be);
     setfillstyle(SOLID_FILL, Be);
     bar(631, 125, 933, 180);
-    settextstyle(10, 0, 5);
+    settextstyle(10, 0, 4);
     setcolor(Blue);
     outtextxy((631 + 933) / 2 - textwidth(_suaMH) / 2, (125 + 170) / 2 - textheight(_suaMH) / 2, _suaMH);
     vien(631, 933, 125, 180);
@@ -170,7 +180,7 @@ void menuThemMH() {
     setbkcolor(Be);
     setfillstyle(SOLID_FILL, Be);
     bar(631, 125, 933, 180);
-    settextstyle(10, 0, 5);
+    settextstyle(10, 0, 4);
     setcolor(Blue);
     outtextxy((631 + 933) / 2 - textwidth(_themMH) / 2, (125 + 170) / 2 - textheight(_themMH) / 2, _themMH);
     vien(631, 933, 125, 180);
@@ -258,6 +268,17 @@ void menuThemLop() {
     buttonSaveMH();
 }
 // ------------------------------SINH VIEN--------------------------------------
+
+void buttonThoatSV() {
+    setbkcolor(Be);
+    setfillstyle(SOLID_FILL, Be);
+    bar(1100, 125, 1140, 165);
+    settextstyle(10, 0, 5);
+    setcolor(RED);
+    outtextxy((1100 + 1140) / 2 - textwidth(_thoat) / 2, (125 + 165) / 2 - textheight(_thoat) / 2, _thoat);
+    vien(1100, 1140, 125, 165);
+}
+
 void tieuDeSV() {
     setbkcolor(Be);
     setfillstyle(SOLID_FILL, Be);
@@ -281,6 +302,7 @@ void menuThemSV() {
     vien(560, 1011, 125, 180);
     buttonSaveSV();
 }
+
 void menuSuaSV() {
     setfillstyle(SOLID_FILL, BlueNhat);
     bar(402, 121, 1151, 748);
@@ -290,8 +312,8 @@ void menuSuaSV() {
     bar(560, 125, 1011, 180);
     settextstyle(10, 0, 5);
     setcolor(Blue);
-    outtextxy((560 + 1011) / 2 - textwidth(_themSinhVien) / 2, (125 + 170) / 2 - textheight(_themSinhVien) / 2, _themSinhVien);
+    outtextxy((560 + 1011) / 2 - textwidth(_suaSinhVien) / 2, (125 + 170) / 2 - textheight(_suaSinhVien) / 2, _suaSinhVien);
     vien(560, 1011, 125, 180);
     buttonSaveSV();
-
+    buttonThoatSV();
 }
