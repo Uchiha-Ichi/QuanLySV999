@@ -55,7 +55,7 @@ public:
     void themNode(Node*& r, Subject& key, int& check);
     // xoa mon hoc
     Node* xoaNode(Node*& r, char* key);
-    bool checkTrung(Node*& tmp,string maMH);
+    bool checkTrung(string maMH);
     int soNode(Node* r);
     void vietDataMH(Node* r, ofstream& fileOut);
     void vietDataDSMH(int n);
@@ -165,15 +165,20 @@ void treeMH::DeleteNode(Node* r) {
     r = NULL;
 }
 // check trung maMH
-bool treeMH::checkTrung(Node*& tmp,string maMH) {
-    if (tmp == NULL) return false;
-    if (strcmp(maMH.c_str(), tmp->getData().getMaMH()) < 0) {
-        return (checkTrung(tmp->getLeft(), maMH) == true) ? true : false;
+bool treeMH::checkTrung( string maMH) {
+    Node*& tmp = getRoot();
+    while (tmp != NULL) {
+        if (strcmp(maMH.c_str(), tmp->getData().getMaMH()) < 0) {
+            tmp = tmp->getLeft();
+        }
+        else if (strcmp(maMH.c_str(), tmp->getData().getMaMH()) > 0) {
+            tmp = tmp->getLeft();
+        }
+        else {
+            return true;
+        }
     }
-    else if (strcmp(maMH.c_str(), tmp->getData().getMaMH()) > 0) {
-        return (checkTrung(tmp->getLeft(), maMH) == true) ? true : false;
-    }
-    else return true;
+    return false;
 }
 // them mon hoc vao cay 
 void treeMH::themNode(Node*& r, Subject& key, int& check) {
